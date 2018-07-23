@@ -1,0 +1,62 @@
+void func_parse()
+{
+	int quest_count = 0;
+	int option_count = 0;
+
+	ifstream in;
+	in.open("mcq.txt");
+	string *question = new string[700];
+	string *options = new string[700];
+	string *answer = new string[700];
+	if (in.is_open())
+	{
+		while (!in.eof())
+		{
+			string ques = "";
+			string ops[4] = {};
+			string ans = "";
+			string space = "";
+
+			getline(in, ques); //question
+			getline(in, space);//space
+			getline(in, ops[0]);//ops
+			getline(in, ops[1]);
+			getline(in, ops[2]);
+			getline(in, ops[3]);//ops
+			getline(in, space);//space
+			getline(in, ans); //ans
+		
+			cout << ques << endl;
+			cout << ops[0] << endl;
+			cout << ops[1] << endl;
+			cout << ops[2] << endl;
+			cout << ops[3] << endl;
+			cout << ans << endl;
+			question[quest_count] = ques;
+			answer[quest_count] = ans;
+			int ops_count = 0;
+			for (int i = option_count; i < option_count + 4; i++)
+			{
+				options[i] = ops[ops_count];
+				ops_count++;
+			}
+			option_count = option_count + 4;
+			quest_count++;
+		}
+	}
+	for (int i = 0; i < quest_count; i++)
+	{
+		cout << question[i] << endl;
+	}
+	for (int i = 0; i < option_count; i++)
+	{
+		cout << options[i] << endl;
+	}
+	for (int i = 0; i < quest_count; i++)
+	{
+		cout << answer[i] << endl;
+	}
+	cout << "QUESTION COUNT" << quest_count << endl;
+	cout << "options count" << option_count << endl;
+	
+}
